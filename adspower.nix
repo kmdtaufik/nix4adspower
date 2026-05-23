@@ -91,7 +91,10 @@ in
       ];
 
     runScript = "${adspower-raw}/opt/adspower/adspower_global";
-
+    extraInstallCommands = ''
+      mkdir -p $out/share
+      cp -r ${adspower-raw}/share/* $out/share/
+    '';
     meta = with lib; {
       description = "AdsPower Global (Modular FHS Environment)";
       homepage = "https://www.adspower.com/";
