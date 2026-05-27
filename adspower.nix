@@ -29,9 +29,9 @@
     installPhase = ''
       mkdir -p $out/opt/adspower
       cp -r unpacked/opt/AdsPower\ Global/* $out/opt/adspower/
-
+      mkdir -p $out/share
+      cp -r unpacked/usr/share/* $out/share/
       mkdir -p $out/share/applications
-      cp unpacked/usr/share/applications/adspower_global.desktop $out/share/applications/
       substituteInPlace $out/share/applications/adspower_global.desktop \
         --replace-warn "/opt/AdsPower Global/adspower_global" "adspower_global"
     '';
@@ -94,6 +94,7 @@ in
     extraInstallCommands = ''
       mkdir -p $out/share
       cp -r ${adspower-raw}/share/* $out/share/
+
     '';
     meta = with lib; {
       description = "AdsPower Global (Modular FHS Environment)";
